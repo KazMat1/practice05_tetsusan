@@ -7,11 +7,11 @@ import TextArea from "@/Components/TextArea";
 import Button from "@/Components/Button";
 import ValidationErrors from "@/Components/ValidationErrors";
 
-export default function Create(props) {
+export default function Edit(props) {
 
-    const { data, setData, post, processing, errors } = useForm({
-        title: "",
-        content: "",
+    const { data, setData, patch, processing, errors } = useForm({
+        title: props.post.title,
+        content: props.post.content,
     });
 
     const handleChange = (event) => {
@@ -21,7 +21,7 @@ export default function Create(props) {
     const submit = (e) => {
         e.preventDefault();
 
-        post(route('post.store'));
+        patch(route('post.update',  props.post.id));
     };
 
     return (
@@ -30,7 +30,7 @@ export default function Create(props) {
             errors={props.errors}
             header={
                 <h2 className="font-semibold text-xl text-gray-800 leading-tight">
-                    Post/Create.jsx
+                    Post/Edit.jsx
                 </h2>
             }
         >
@@ -46,7 +46,7 @@ export default function Create(props) {
                             />
                             <section className="text-gray-600 body-font relative">
                                 <div className="mb-4 w-full">
-                                    <p className="text-xl text-gray-900">投稿の新規作成</p>
+                                    <p className="text-xl text-gray-900">投稿の編集</p>
                                 </div>
                                 <form onSubmit={submit}>
                                     <div className="flex flex-wrap -m-2">
@@ -105,7 +105,7 @@ export default function Create(props) {
                                                 className="text-white bg-indigo-500 py-3 px-6 hover:bg-indigo-400 active:bg-indigo-700 text-lg"
                                                 processing={processing}
                                             >
-                                                作成する
+                                                更新する
                                             </Button>
                                         </div>
                                     </div>

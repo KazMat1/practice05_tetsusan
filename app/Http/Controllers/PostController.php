@@ -45,7 +45,10 @@ class PostController extends Controller
             'title' => ['required'],
             'content' => ['required'],
         ]);
-        Post::create($request->all());
+        Post::create([
+            'title' => $request->title,
+            'content' => $request->content,
+        ]);
         return redirect()->route('post.index');
 
     }
@@ -67,9 +70,10 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Post $post)
     {
         //
+        return Inertia::render('Post/Edit', ['post' => $post]);
     }
 
     /**
@@ -79,9 +83,17 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Post $post)
     {
         //
+        $rules = [
+            'title' => 'required',
+            'content' => 'required',
+        ];
+        $request->validate($rules);
+        $post->update($request->all());
+
+        return redirect()->route('post.index');
     }
 
     /**
@@ -93,5 +105,17 @@ class PostController extends Controller
     public function destroy($id)
     {
         //
+        Post::findOrFail($id)->delete();
+
+        return redirect()->route('post.index');
+
     }
+    // public function destroy(Post $post)
+    // {
+    //     //
+    //     $post->delete();
+
+    //     return redirect()->route('post.index');
+
+    // }
 }
