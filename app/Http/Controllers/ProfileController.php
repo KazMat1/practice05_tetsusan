@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use App\Models\User;
+use App\Models\Post;
 
 class ProfileController extends Controller
 {
@@ -15,7 +16,11 @@ class ProfileController extends Controller
      */
     public function index()
     {
-        return Inertia::render('Profile/Index');
+        $posts = Post::all();
+        $countPost = count($posts);
+        return Inertia::render('Profile/Index', [
+            'countPost' => $countPost,
+        ]);
     }
 
     /**

@@ -161,7 +161,7 @@ export default function Authenticated({ auth, header, children }) {
             <footer className="text-gray-600 bg-white body-font border-gray-200 shadow-sm">
                 <div className="container px-4 sm:px-6 lg:px-8 py-8 mx-auto flex items-center sm:flex-row flex-col">
                     <Link
-                        href='/'
+                        href={route('dashboard')}
                         className='flex title-font font-medium items-center md:justify-start justify-center text-gray-900'
                     >
                         <ApplicationLogo className="block h-9 w-auto text-gray-500" />

@@ -16,9 +16,10 @@ class PostController extends Controller
     public function index()
     {
         $posts = Post::all();
-
+        $countPost = count($posts);
         return Inertia::render('Post/Index', [
-            'posts' => $posts
+            'posts' => $posts,
+            'countPost' => $countPost,
         ]);
     }
 
