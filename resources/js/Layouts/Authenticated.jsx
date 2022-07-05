@@ -4,6 +4,8 @@ import Dropdown from '@/Components/Dropdown';
 import NavLink from '@/Components/NavLink';
 import ResponsiveNavLink from '@/Components/ResponsiveNavLink';
 import { Link } from '@inertiajs/inertia-react';
+import Button from '@/Components/Button';
+import ButtonLink from '@/Components/ButtonLink'
 
 export default function Authenticated({ auth, header, children }) {
     const [showingNavigationDropdown, setShowingNavigationDropdown] = useState(false);
@@ -34,6 +36,14 @@ export default function Authenticated({ auth, header, children }) {
                         </div>
 
                         <div className="hidden sm:flex sm:items-center sm:ml-6">
+                            <div className="ml-3">
+                                <ButtonLink href={route('post.create')}>
+                                    <Button
+                                        className='hover:bg-gray-400'
+                                    >投稿する
+                                    </Button>
+                                </ButtonLink>
+                            </div>
                             <div className="ml-3 relative">
                                 <Dropdown>
                                     <Dropdown.Trigger>
@@ -151,12 +161,15 @@ export default function Authenticated({ auth, header, children }) {
             {/* footer */}
             <footer className="text-gray-600 bg-white body-font border-gray-200 shadow-sm">
                 <div className="container px-4 sm:px-6 lg:px-8 py-8 mx-auto flex items-center sm:flex-row flex-col">
-                    <a className="flex title-font font-medium items-center md:justify-start justify-center text-gray-900">
+                    <Link
+                        href='/'
+                        className='flex title-font font-medium items-center md:justify-start justify-center text-gray-900'
+                    >
                         <ApplicationLogo className="block h-9 w-auto text-gray-500" />
                         <span className="ml-3 text-xl">My blog</span>
-                    </a>
+                    </Link>
                     <p className="text-sm text-gray-500 sm:ml-4 sm:pl-4 sm:border-l-2 sm:border-gray-200 sm:py-2 sm:mt-0 mt-4">© 2022 Kazuki Matsudou —
-                    <a href="https://twitter.com/knyttneve" className="text-gray-600 ml-1" rel="noopener noreferrer" target="_blank">@何かのリンクをここに貼る？</a>
+                    <Link href="/" className="text-gray-600 ml-1" rel="noopener noreferrer" target="_blank">リンクをここに貼る</Link>
                     </p>
                     <span className="inline-flex sm:ml-auto sm:mt-0 mt-4 justify-center sm:justify-start">
                     <a className="text-gray-500">

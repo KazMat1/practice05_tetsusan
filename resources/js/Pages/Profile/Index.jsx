@@ -3,6 +3,7 @@ import Authenticated from '@/Layouts/Authenticated';
 import { Head, Link } from '@inertiajs/inertia-react';
 import Button from '@/Components/Button';
 
+
 export default function Index(props) {
     return (
         <Authenticated
@@ -27,22 +28,17 @@ export default function Index(props) {
                                     <p className="leading-relaxed text-base">{props.auth.user.email}</p>
                                     <p className="leading-relaxed text-base mb-5">投稿：○件</p>
                                     <Button
-                                        type='get'
+                                        className='hover:bg-gray-400'
                                     >
-                                        <a className="text-white inline-flex items-center">プロフィールを編集する
-                                        <svg fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" className="w-4 h-4 ml-2" viewBox="0 0 24 24">
-                                            <path d="M5 12h14M12 5l7 7-7 7"></path>
-                                        </svg>
-                                        </a>
-                                        {/* <Link
-                                            href={route('profile.edit')}
+                                        <Link
+                                            href="/"
                                             className="text-white inline-flex items-center"
                                         >
                                             プロフィールを編集する
                                             <svg fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" className="w-4 h-4 ml-2" viewBox="0 0 24 24">
                                                 <path d="M5 12h14M12 5l7 7-7 7"></path>
                                             </svg>
-                                        </Link> */}
+                                        </Link>
                                     </Button>
                                 </div>
                             </div>
