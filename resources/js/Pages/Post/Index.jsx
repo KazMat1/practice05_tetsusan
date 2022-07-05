@@ -2,6 +2,7 @@ import React from "react";
 import Authenticated from "@/Layouts/Authenticated";
 import { Head, useForm, Link } from "@inertiajs/inertia-react";
 import Button from "@/Components/Button";
+import dateToFormat from "@/Utils";
 
 export default function Index(props) {
     const { delete: destroy } = useForm();
@@ -163,7 +164,10 @@ export default function Index(props) {
                                                         </svg>
                                                     </a>
                                                     <p className="mt-3 text-gray-400 inline-flex items-center">
-                                                        {post.created_at}
+                                                        {
+                                                            // console.log(post.created_at)
+                                                            dateToFormat(post.created_at)
+                                                        }
                                                     </p>
                                                 </div>
                                             </div>

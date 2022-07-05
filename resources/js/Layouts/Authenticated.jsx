@@ -5,7 +5,6 @@ import NavLink from '@/Components/NavLink';
 import ResponsiveNavLink from '@/Components/ResponsiveNavLink';
 import { Link } from '@inertiajs/inertia-react';
 import Button from '@/Components/Button';
-import ButtonLink from '@/Components/ButtonLink'
 
 export default function Authenticated({ auth, header, children }) {
     const [showingNavigationDropdown, setShowingNavigationDropdown] = useState(false);
@@ -37,12 +36,12 @@ export default function Authenticated({ auth, header, children }) {
 
                         <div className="hidden sm:flex sm:items-center sm:ml-6">
                             <div className="ml-3">
-                                <ButtonLink href={route('post.create')}>
+                                <Link href={route('post.create')}>
                                     <Button
                                         className='hover:bg-gray-400'
                                     >投稿する
                                     </Button>
-                                </ButtonLink>
+                                </Link>
                             </div>
                             <div className="ml-3 relative">
                                 <Dropdown>

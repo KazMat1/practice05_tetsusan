@@ -34,7 +34,7 @@ export default function Edit(props) {
                 </h2>
             }
         >
-            <Head title="Post" />
+            <Head title="Edit" />
             {/* 投稿フォーム */}
             <div className="py-12">
                 <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
