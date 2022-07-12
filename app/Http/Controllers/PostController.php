@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use App\Models\Post;
+use App\Models\Tag;
 
 class PostController extends Controller
 {
@@ -15,7 +16,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::all();
+        $posts = Post::with('tags')->get();
         $countPost = count($posts);
         return Inertia::render('Post/Index', [
             'posts' => $posts,
@@ -41,17 +42,35 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
-        $request->validate([
+        // https://qiita.com/AkiYanagimoto/items/b363d673d9f2bf63fc0f
+        // https://qiita.com/hinako_n/items/18957b35124c75fc712d
+        $rules = [
             'title' => ['required'],
             'content' => ['required'],
-        ]);
-        Post::create([
-            'title' => $request->title,
-            'content' => $request->content,
-        ]);
-        return redirect()->route('post.index');
+        ];
+        $request->validate($rules);
+        preg_match_all('/#([a-zA-z0-9０-９ぁ-んァ-ヶ亜-熙]+)/u', $request->tag_names, $match);
 
+        $tags = [];
+        foreach ($match[1] as $tag) {
+            $record = Tag::firstOrCreate([
+                'name' => $tag
+            ]);
+            array_push($tags, $record);
+        };
+
+        $tags_id = [];
+        foreach ($tags as $tag) {
+            array_push($tags_id, $tag['id']);
+        };
+
+        $post = new Post;
+        $post->title = $request->title;
+        $post->content = $request->content;
+        $post->save();
+
+        $post->tags()->attach($tags_id);
+        return redirect()->route('post.index');
     }
 
     /**

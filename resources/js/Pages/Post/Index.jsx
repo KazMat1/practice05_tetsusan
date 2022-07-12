@@ -8,6 +8,7 @@ import ProfileInformation from "@/Components/ProfileInfomation";
 import IconButton from "@/Components/IconButton";
 import PostDate from "@/Components/PostDate";
 import PostTitle from "@/Components/PostTitle";
+import Tag from "@/Components/Tag";
 import PostContent from "@/Components/PostContent";
 
 export default function Index(props) {
@@ -73,6 +74,14 @@ export default function Index(props) {
                                                             </svg>
                                                         </IconButton>
                                                     </div>
+                                                </div>
+                                                {/* タグが入ります。 */}
+                                                <div className="flex justify-start mb-2">
+                                                    { post.tags.map((tag) => {
+                                                        return (
+                                                            <Tag tag={tag} key={tag.id} />
+                                                        );
+                                                    }) }
                                                 </div>
                                                 <PostContent content={post.content}/>
                                                 <div className="flex justify-between">

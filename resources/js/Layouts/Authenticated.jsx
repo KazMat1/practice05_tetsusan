@@ -38,7 +38,7 @@ export default function Authenticated({ auth, header, children }) {
                             <div className="ml-3">
                                 <Link href={route('post.create')}>
                                     <Button
-                                        className='hover:bg-gray-400'
+                                        className='hover:bg-green-400'
                                     >投稿する
                                     </Button>
                                 </Link>

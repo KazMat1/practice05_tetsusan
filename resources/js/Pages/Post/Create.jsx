@@ -7,15 +7,17 @@ import TextArea from "@/Components/TextArea";
 import Button from "@/Components/Button";
 import ValidationErrors from "@/Components/ValidationErrors";
 
+
 export default function Create(props) {
 
     const { data, setData, post, processing, errors } = useForm({
         title: "",
+        tag_name: "",
         content: "",
     });
 
     const handleChange = (event) => {
-        // console.log(`${event.target.name}の内容が${event.target.value}に変わりました`);
+        console.log(`${event.target.name}の内容が${event.target.value}に変わりました`);
         setData(event.target.name, event.target.value);
     };
     const submit = (e) => {
@@ -68,21 +70,23 @@ export default function Create(props) {
                                                 />
                                             </div>
                                         </div>
-                                        {/* <div className="p-2 w-full">
-                                                <div className="relative">
-                                                    <Label
-                                                            forInput="tag"
-                                                            value="Tag"
-                                                            className="leading-7 text-sm text-gray-600"
-                                                    />
-                                                    <Input
-                                                            type="text"
-                                                            id="tag"
-                                                            name="tag"
-                                                            className="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
-                                                    />
-                                                </div>
-                                             </div> */}
+                                        <div className="p-2 w-full">
+                                            <div className="relative">
+                                                <Label
+                                                        forInput="tag_names"
+                                                        value="Tag ※ハッシュタグ（#）をつけて入力してください"
+                                                        className="leading-7 text-sm text-gray-600"
+                                                />
+                                                <Input
+                                                    type="text"
+                                                    id="tag_names"
+                                                    name="tag_names"
+                                                    className="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+                                                    value={data.tag}
+                                                    handleChange={handleChange}
+                                                />
+                                            </div>
+                                        </div>
                                         <div className="p-2 w-full">
                                             <div className="relative">
                                                 <Label
